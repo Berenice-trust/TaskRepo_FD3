@@ -1,0 +1,13 @@
+$main-color: #4caf50;
+
+.Shop {
+  border: 2px solid $main-color;
+  padding: 20px;
+  margin: 20px;
+  background: #f9f9f9;
+
+  .title {
+    color: $main-color;
+    font-weight: bold;
+  }
+}
