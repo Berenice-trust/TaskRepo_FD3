@@ -1,45 +1,50 @@
-const path = require('path'); // модуль Node.js для работы с путями
+const path = require('path'); 
 
-//const ExtractTextPlugin = require("extract-text-webpack-plugin"); // плагин для выделения CSS в отдельный файл
+//const ExtractTextPlugin = require("extract-text-webpack-plugin"); // старый плагин для выделения CSS
 const MiniCssExtractPlugin = require('mini-css-extract-plugin'); // более современный плагин для выделения CSS
 
+// со старым плагином
 // const extractCSS = new ExtractTextPlugin({
 //     filename: "bundle.css" // имя итогового CSS-файла
 // });
 
 module.exports = { 
-    entry: "./App.js", // точка входа — главный JS-файл приложения
+    entry: "./App.js", // точка входа
     output:{ 
-        path: __dirname, // куда складывать собранные файлы (текущая папка)
-        filename: "bundle.js"  // имя итогового JS-файла
+        path: path.resolve(__dirname), // сюда складываем итоговые файлы
+        filename: "bundle.js"  
     }, 
-    mode: 'development',
-    devtool:'source-map', // генерация source map для удобства отладки
+    mode: 'development', // режим сборки для разработки
+    devtool:'source-map', // для отладки в браузере
     module:{ 
         rules:[
             { 
-                test: /\.jsx?$/, // обрабатывать все .js и .jsx файлы
+                test: /\.jsx?$/, // .js и .jsx 
                 exclude: /node_modules/, // кроме node_modules
                 use: { loader: "babel-loader" } // использовать babel-loader для транспиляции
             },
             {
-                test: /\.css$/, // обрабатывать все .css файлы
+                test: /\.css$/, //  все .css 
                 // use: extractCSS.extract({
-                //     use: ["css-loader"] // использовать css-loader для импорта CSS
+                //     use: ["css-loader"] // для старого плагина
                 // })
-                use: [MiniCssExtractPlugin.loader, "css-loader"] // использовать mini-css-extract-plugin и css-loader для импорта CSS
+                use: [MiniCssExtractPlugin.loader, "css-loader"] // использовать для импорта CSS
             },
             {
-                test: /\.scss$/, // добавляем правило для SCSS
-                use: [MiniCssExtractPlugin.loader, "css-loader", "sass-loader"] // порядок важен!
+                test: /\.scss$/, //  для SCSS
+                use: [MiniCssExtractPlugin.loader, "css-loader", "sass-loader"] // в этом порядке
+            },
+            {
+            test: /\.(png|jpe?g|gif|svg)$/i,
+            type: 'asset/resource',
             }
         ]
     },
     plugins: [
-        //extractCSS // подключаем плагин для выделения CSS
+        //extractCSS // плагин для выделения CSS
          new MiniCssExtractPlugin({
             filename: "bundle.css" // имя итогового CSS-файла
-        }) // подключаем современный плагин для выделения CSS
+        })
     ],
     // по умолчанию ищет public/index.html
     // но у нас в корне лежит
