@@ -2,7 +2,11 @@ node_modules/
 dist/
 bundle.js
 bundle.css
+bundle.css.map
+bundle.js.map
 *.log
 .DS_Store
 .env
 .vscode/
+dist/
+dist/assets/
