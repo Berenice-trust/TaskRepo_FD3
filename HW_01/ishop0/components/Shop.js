@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types"; // импортируем PropTypes для валидации
 import "./Shop.scss"; 
+import Product from "./Product"; // компонент Product
 
 class Shop extends React.Component {
   render() {
@@ -14,13 +15,28 @@ class Shop extends React.Component {
           </div>
         </div>
         <h3>Товары:</h3>
-        <ul className="products-list">
-          {this.props.products.map(product => (
-            <li key={product.id}>
-              {product.name} — {product.price} руб.
-            </li>
-          ))}
-        </ul>
+        <table className="products-table">
+          <thead>
+            <tr>
+              <th>Название</th>
+              <th>Цена</th>
+              <th>Фото</th>
+              <th>Количество</th>
+            </tr>
+          </thead>
+          <tbody>
+            {this.props.products.map(product => (
+              // рисует одну строку для каждого товара
+              <Product
+                key={product.id} // для правильного вывода списка
+                name={product.name}
+                price={product.price}
+                photoUrl={product.photoUrl}
+                count={product.count}
+              />
+            ))}
+          </tbody>
+        </table>
       </div>
     );
   }
@@ -36,6 +52,8 @@ Shop.propTypes = {
       id: PropTypes.number.isRequired,
       name: PropTypes.string.isRequired,
       price: PropTypes.number.isRequired,
+      photoUrl: PropTypes.string.isRequired,
+      count: PropTypes.number.isRequired,
     })
   ).isRequired,
 };
