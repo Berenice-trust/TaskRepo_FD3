@@ -1,4 +1,4 @@
-import React from "react";
+import React from "react"; //  по идее эта строчка и не нужна
 import PropTypes from "prop-types";
 
 function Product({ name, price, photoUrl, count }) {

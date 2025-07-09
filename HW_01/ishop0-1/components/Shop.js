@@ -42,7 +42,7 @@ class Shop extends React.Component {
   }
 }
 
-// Валидация props, тип и обязательность
+// Типы props, тип и обязательность
 Shop.propTypes = {
   name: PropTypes.string.isRequired,
   address: PropTypes.string.isRequired,
