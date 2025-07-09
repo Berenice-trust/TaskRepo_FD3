@@ -26,12 +26,5 @@
     "price": 7.00,
     "photoUrl": "https://thumb.tildacdn.com/tild6336-3034-4062-a336-366533633235/-/format/webp/bowl-3366480_1920.jpg",
     "count": 3
-  },
-    {
-        "id": 5,
-        "name": "Яйца",
-        "price": 3.00,
-        "photoUrl": "https://thumb.tildacdn.com/tild6336-3034-4062-a336-366533633235/-/format/webp/bowl-3366480_1920.jpg",
-        "count": 12
-    }
+  }
 ]
