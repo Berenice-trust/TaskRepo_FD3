@@ -96,4 +96,37 @@ $background-color: #f9f9f9;
   tr:nth-child(even) { //четные
     background: #fafafa;
   }
+
+  tr.selected {
+    background: rgba($main-color, 0.5); // основной зелёный с прозрачностью
+    font-weight: bold;
+    transition: background 0.2s;
+  }
+
+  tr.selected td {
+    color: black; 
+  }
+
+   button {
+    background: #e07a3f; // мягкий светло-оранжевый
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    padding: 8px 18px;
+    font-size: 1em;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.07);
+    transition: background 0.2s, transform 0.1s;
+
+    &:hover, &:focus {
+      background: #ffa726; // чуть насыщеннее при наведении
+      transform: translateY(-2px) scale(1.04);
+      outline: none;
+    }
+    &:active {
+      background: #fb8c00; // насыщенный оранжевый при нажатии
+      transform: scale(0.98);
+    }
+  }
 }
