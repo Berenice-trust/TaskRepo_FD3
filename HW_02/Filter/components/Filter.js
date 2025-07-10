@@ -8,34 +8,47 @@ class Filter extends React.Component {
   state = {
     filterText: "", // начальный текст
     isSorted: false, // начальное - не отсортирован
+    displayedWords: this.props.words, // массив слов для отображения
   };
 
   handleCheckboxChange = (e) => {
-    this.setState({ isSorted: e.target.checked }); // true если выделен
+    const isSorted = e.target.checked; // получаем состояние чекбокса
+    this.setState(
+      { isSorted },
+      // функция выполнится после обновления state
+      () => this.updateDisplayedWords(this.state.filterText, isSorted),
+    );
   };
 
   handleInputChange = (e) => {
-    this.setState({ filterText: e.target.value }); // то что введено
+    const filterText = e.target.value; // получаем текст из инпута
+    this.setState({ filterText }, () =>
+      this.updateDisplayedWords(filterText, this.state.isSorted),
+    );
   };
 
   handleReset = () => {
-    this.setState({ filterText: "", isSorted: false });
+    this.setState({ filterText: "", isSorted: false }, () =>
+      this.updateDisplayedWords("", false),
+    ); // сбрасываем фильтр и сортировку
   };
 
-  render() {
-    //получаем массив слов из props
-    const { words } = this.props;
-    const { filterText } = this.state;
-    const { isSorted } = this.state;
-
+  // метод для сортировки и фильтрации слов
+  updateDisplayedWords = (filterText, isSorted) => {
     //приводит к нижнему регистру и фильтрует по введенному слову
-    let displayedWords = words.filter((word) =>
+    let displayedWords = this.props.words.filter((word) =>
       word.toLowerCase().includes(filterText.toLowerCase()),
     );
     // сортируем, если чекбокс отмечен
     if (isSorted) {
       displayedWords = [...displayedWords].sort(); // сортируем по умолчанию по алфавиту
     }
+    this.setState({ displayedWords }); // обновляем состояние
+  };
+
+  render() {
+    //получаем массив слов из state
+    const { filterText, isSorted, displayedWords } = this.state;
 
     return (
       <div className="Filter">
