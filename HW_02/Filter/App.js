@@ -5,8 +5,4 @@ import words from "./words.json";
 
 // рендер реакт 18+
 const root = ReactDOM.createRoot(document.getElementById("container"));
-root.render(
-  <Filter words={words}
-   
-  />,
-);
+root.render(<Filter words={words} />);
