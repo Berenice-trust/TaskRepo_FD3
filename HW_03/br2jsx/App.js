@@ -5,6 +5,4 @@ import BR2JSX from "./components/BR2JSX";
 const text = "первый<br>второй<br/>третий<br />последний";
 
 const root = ReactDOM.createRoot(document.getElementById("container"));
-root.render(
-  <BR2JSX text={text} />
-);
+root.render(<BR2JSX text={text} />);
