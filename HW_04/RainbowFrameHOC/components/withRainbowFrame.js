@@ -1,10 +1,10 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-// Вспомогательная функция для рамок
-function wrapWithFrames(content, colors) {
-  colors.forEach(color => {
-    content = (
+// функция для рамок
+const wrapWithFrames = (content, colors) =>
+  colors.reduce(
+    (acc, color) => (
       <div
         style={{
           border: `6px solid ${color}`,
@@ -12,19 +12,21 @@ function wrapWithFrames(content, colors) {
           display: "inline-block",
         }}
       >
-        {content}
+        {acc}
       </div>
-    );
-  });
-  return content;
-}
+    ),
+    content,
+  );
 
-const withRainbowFrame = colors => WrappedComponent => {
-  const RainbowFrameHOC = props => {
-    let content = <WrappedComponent {...props}>{props.children}</WrappedComponent>;
+// HOF для обертки компонента с рамками
+const withRainbowFrame = (colors) => (SpanComponent) => {
+  const RainbowFrameHOC = (props) => {
+    let content = <SpanComponent {...props}>{props.children}</SpanComponent>;
     return wrapWithFrames(content, colors);
   };
-  RainbowFrameHOC.displayName = `withRainbowFrame(${WrappedComponent.displayName || WrappedComponent.name || "Component"})`;
+
+  // отображение для отладки в devtools
+  RainbowFrameHOC.displayName = `withRainbowFrame(${SpanComponent.displayName || SpanComponent.name || "Component"})`;
   RainbowFrameHOC.propTypes = {
     children: PropTypes.node,
   };

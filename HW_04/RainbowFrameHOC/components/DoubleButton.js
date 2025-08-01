@@ -12,14 +12,41 @@ class DoubleButton extends React.Component {
   render() {
     const { caption1, caption2, cbPressed, children } = this.props;
     return (
-      <div>
+      <div
+        style={{
+          padding: "10px 20px",
+          fontSize: "1.2em",
+          color: "black",
+          fontWeight: "bold",
+        }}
+      >
         <input
+          style={{
+            margin: "5px",
+            backgroundColor: "lightgreen",
+            border: "1px solid black",
+            borderRadius: "5px",
+            padding: "5px",
+            fontSize: "1em",
+            color: "black",
+            fontWeight: "bold",
+          }}
           type="button"
           value={caption1}
           onClick={() => cbPressed(1)}
         />
         {children}
         <input
+          style={{
+            margin: "5px",
+            backgroundColor: "lightgreen",
+            border: "1px solid black",
+            borderRadius: "5px",
+            padding: "5px",
+            fontSize: "1em",
+            color: "black",
+            fontWeight: "bold",
+          }}
           type="button"
           value={caption2}
           onClick={() => cbPressed(2)}
