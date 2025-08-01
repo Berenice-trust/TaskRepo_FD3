@@ -21,7 +21,7 @@ const wrapWithFrames = (content, colors) =>
 // HOF для обертки компонента с рамками
 const withRainbowFrame = (colors) => (SpanComponent) => {
   const RainbowFrameHOC = (props) => {
-    let content = <SpanComponent {...props}>{props.children}</SpanComponent>;
+    let content = <SpanComponent {...props}/>; // children входит в props
     return wrapWithFrames(content, colors);
   };
 
