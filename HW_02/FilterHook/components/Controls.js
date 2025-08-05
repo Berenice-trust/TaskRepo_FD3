@@ -16,13 +16,13 @@ function Controls({
             className="filter-checkbox"
             type="checkbox"
             checked={isSorted}
-            onChange={handleCheckboxChange}
+            onChange={e => handleCheckboxChange(e.target.checked)}
           />
 
           <input
             type="text"
             value={filterText}
-            onChange={handleInputChange}
+            onChange={e => handleInputChange(e.target.value)}
             placeholder="Введите слово для фильтрации"
           />
 

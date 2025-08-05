@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import eventEmitter from "./EventEmitter";
 
 class MobileClient extends React.PureComponent {
   render() {
@@ -23,9 +24,19 @@ class MobileClient extends React.PureComponent {
           <button className="edit-btn">Редактировать</button>
         </td>
         <td>
-          <button className="delete-btn">Удалить</button>
+          <button
+            className="delete-btn"
+            onClick={() => {
+                if (window.confirm("Удалить клиента?")) {
+                eventEmitter.emit("deleteClient", client.id);
+            }
+        }}
+          >
+            Удалить
+          </button>
         </td>
       </tr>
+      
     );
   }
 }

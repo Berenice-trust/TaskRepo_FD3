@@ -5,7 +5,5 @@ import MobileCompany from "./components/MobileCompany";
 const root = ReactDOM.createRoot(document.getElementById("container"));
 
 root.render(
-  <React.StrictMode>
     <MobileCompany />
-  </React.StrictMode>,
 );

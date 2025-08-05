@@ -13,9 +13,9 @@ const Filter = ({ words }) => {
 
 
   // обработчики событий
-  const handleCheckboxChange = (e) => setIsSorted(e.target.checked);
+  const handleCheckboxChange = (isSorted) => setIsSorted(isSorted);
 
-  const handleInputChange = (e) => setFilterText(e.target.value);
+  const handleInputChange = (filterText) => setFilterText(filterText);
 
   const handleReset = () => {
     setFilterText(""); // сбрасываем текст фильтра
