@@ -40,9 +40,9 @@ function Controls({
 Controls.propTypes = {
   isSorted: PropTypes.bool.isRequired,
   filterText: PropTypes.string.isRequired,
-  onSortChange: PropTypes.func.isRequired,
-  onFilterChange: PropTypes.func.isRequired,
-  onReset: PropTypes.func.isRequired,
+  handleCheckboxChange: PropTypes.func.isRequired,
+  handleInputChange: PropTypes.func.isRequired,
+  handleReset: PropTypes.func.isRequired,
 };
 
 export default Controls;
