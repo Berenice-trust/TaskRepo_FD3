@@ -11,8 +11,7 @@ class Filter extends React.Component {
     displayedWords: this.props.words, // массив слов для отображения
   };
 
-  handleCheckboxChange = (e) => {
-    const isSorted = e.target.checked; // получаем состояние чекбокса
+  handleCheckboxChange = (isSorted) => {
     this.setState(
       { isSorted },
       // функция выполнится после обновления state
@@ -20,8 +19,7 @@ class Filter extends React.Component {
     );
   };
 
-  handleInputChange = (e) => {
-    const filterText = e.target.value; // получаем текст из инпута
+  handleInputChange = (filterText) => {
     this.setState({ filterText }, () =>
       this.updateDisplayedWords(filterText, this.state.isSorted),
     );
@@ -59,13 +57,13 @@ class Filter extends React.Component {
             className="filter-checkbox"
             type="checkbox"
             checked={isSorted}
-            onChange={this.handleCheckboxChange}
+            onChange={e => this.handleCheckboxChange(e.target.checked)}
           />
 
           <input
             type="text"
             value={filterText}
-            onChange={this.handleInputChange}
+            onChange={e => this.handleInputChange(e.target.value)}
             placeholder="Введите слово для фильтрации"
           />
 
