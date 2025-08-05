@@ -2,6 +2,7 @@ import React from "react";
 import "./styles.scss";
 import FilterButtons from "./FilterButtons";
 import MobileClient from "./MobileClient";
+import eventEmitter from "./EventEmitter"; // импортируем EventEmitter
 
 class MobileCompany extends React.PureComponent {
   state = {
@@ -19,6 +20,28 @@ class MobileCompany extends React.PureComponent {
     ],
     Filter: "all", // all | active | blocked
   };
+
+
+// подписывание на событие удаления клиента
+ componentDidMount() {
+    eventEmitter.on("deleteClient", this.deleteClient);
+  }
+
+  // отписывание от события при размонтировании компонента
+  componentWillUnmount() {
+    eventEmitter.off("deleteClient", this.deleteClient);
+  }
+
+  deleteClient = (id) => {
+    console.log("Удаление клиента с id:", id);
+    const newClients = this.state.clients.filter(client => client.id !== id);
+    this.setState({ clients: newClients });
+  };
+
+
+
+
+
   render() {
     console.log("MobileCompany render");
 

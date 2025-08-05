@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useMemo } from "react";
 import PropTypes from "prop-types"; // импортируем PropTypes для валидации
 import "./Filter.scss";
 import List from "./List"; // импортируем List для отображения списка слов
@@ -26,14 +26,16 @@ const Filter = ({ words }) => {
 
 
     //приводит к нижнему регистру и фильтрует по введенному слову
-    let displayedWords = words.filter((word) =>
-      word.toLowerCase().includes(filterText.toLowerCase()),
+    const displayedWords = useMemo(() => {
+      let result = words.filter((word) =>
+         word.toLowerCase().includes(filterText.toLowerCase())
     );
     // сортируем, если чекбокс отмечен
     if (isSorted) {
-      displayedWords = [...displayedWords].sort(); // сортируем по умолчанию по алфавиту
+      result = [...result].sort(); // сортируем по умолчанию по алфавиту
     }
-
+    return result;
+  }, [words, filterText, isSorted]); // зависимости для useMemo
 
 
     return (
