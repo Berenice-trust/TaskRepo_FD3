@@ -1,0 +1,83 @@
+$bg-main: #fff;
+$bg-body: #f5e9da;
+$text-main: black;
+$text-title: #6d4c1c;
+$shadow-main: 0 2px 8px rgba(0,0,0,0.04);
+
+body {
+  background: $bg-body;
+}
+
+.Filter {
+  max-width: 400px;
+  margin: 0 auto;
+  font-family: 'Roboto', Arial, sans-serif;
+
+   .filter-title {
+    text-align: center;
+    font-size: 1.5em;
+    margin-bottom: 20px;
+    font-weight: bold;
+    color: $text-title;
+  }
+
+    .filter-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+
+        .filter-checkbox {
+            align-items: center;
+            font-size: 2em;
+            transform: scale(1.5);
+            margin-right: 6px;
+            }
+
+
+        .filter-reset {
+            background: $bg-body;
+            border: 1px solid $text-title;
+            border-radius: 5px;
+            padding: 6px 16px;
+            font-size: 1em;
+            cursor: pointer;
+            transition: background 0.2s;
+            color: $text-title;
+            margin-right: 6px;
+        }
+        .filter-reset:hover {
+            background: #ffe4b5;
+        }
+
+        input[type="text"] {
+            width: 60%;
+            font-size: 0.8em;
+            padding: 6px 8px;
+            border-radius: 6px;
+            border: 1px solid $bg-main;
+            box-sizing: border-box;
+        }
+  }
+
+    .words-list {
+        background: $bg-main;
+        border-radius: 8px;
+        padding: 16px;
+        margin-top: 16px;
+        box-shadow: $shadow-main;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+
+        .word-item {
+        padding: 6px 12px;
+        border-radius: 4px;
+        background: $bg-main;
+        font-size: 1.1em;
+        transition: background 0.2s;
+        }
+    }
+
+
+}
