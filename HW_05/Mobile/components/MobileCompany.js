@@ -19,28 +19,57 @@ class MobileCompany extends React.PureComponent {
       },
     ],
     Filter: "all", // all | active | blocked
+    adding: false,
   };
 
+  setFilter = (filter) => {
+    this.setState({ Filter: filter });
+  };
 
-// подписывание на событие удаления клиента
- componentDidMount() {
+  // подписывание на событие удаления клиента
+  componentDidMount() {
     eventEmitter.on("deleteClient", this.deleteClient);
+    eventEmitter.on("editClient", this.editClient);
   }
 
   // отписывание от события при размонтировании компонента
   componentWillUnmount() {
     eventEmitter.off("deleteClient", this.deleteClient);
+    eventEmitter.off("editClient", this.editClient);
   }
 
   deleteClient = (id) => {
-    console.log("Удаление клиента с id:", id);
-    const newClients = this.state.clients.filter(client => client.id !== id);
+    const client = this.state.clients.find((client) => client.id === id);
+    console.log(
+      "Удаление клиента с id:",
+      id,
+      client ? client.fam : "Неизвестный",
+    );
+    const newClients = this.state.clients.filter((client) => client.id !== id);
     this.setState({ clients: newClients });
   };
 
+  // обработчик события редактирования
+  editClient = (updatedClient) => {
+    const newClients = this.state.clients.map((client) =>
+      client.id === updatedClient.id ? updatedClient : client,
+    );
+    this.setState({ clients: newClients });
+  };
 
+  startAddClient = () => {
+    this.setState({ adding: true });
+  };
 
+  cancelAddClient = () => {
+    this.setState({ adding: false });
+  };
 
+  addClient = (newClient) => {
+    console.log("Добавлен клиент: id =", newClient.id, newClient.fam);
+    const newClients = [...this.state.clients, newClient];
+    this.setState({ clients: newClients, adding: false });
+  };
 
   render() {
     console.log("MobileCompany render");
@@ -60,7 +89,7 @@ class MobileCompany extends React.PureComponent {
 
         <FilterButtons
           currentFilter={this.state.Filter}
-          onFilterChange={(filter) => this.setState({ Filter: filter })}
+          onFilterChange={this.setFilter}
         />
 
         <table className="MobileCompany-table">
@@ -79,8 +108,25 @@ class MobileCompany extends React.PureComponent {
             {filteredClients.map((client) => (
               <MobileClient key={client.id} client={client} />
             ))}
+            {this.state.adding && (
+              <MobileClient
+                client={{
+                  id: Math.max(0, ...this.state.clients.map((c) => c.id)) + 1,
+                  fam: "",
+                  im: "",
+                  otch: "",
+                  balance: 0,
+                }}
+                isNew={true}
+                onSave={this.addClient}
+                onCancel={this.cancelAddClient}
+              />
+            )}
           </tbody>
         </table>
+        <button className="edit-btn" onClick={this.startAddClient}>
+          Добавить клиента
+        </button>
       </div>
     );
   }
