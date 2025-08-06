@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 
 class FilterButtons extends React.PureComponent {
   render() {
-    console.log("FilterButtons render");
+    // console.log("FilterButtons render");
     const { currentFilter, onFilterChange } = this.props;
 
     return (

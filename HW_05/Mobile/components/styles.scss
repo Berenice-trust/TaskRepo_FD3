@@ -155,12 +155,10 @@ $filter-btn-margin: 0 4px 0 0;
 // Контейнер для кнопок в ячейке
 .button-group {
   display: flex;
-  gap: 8px; 
-  justify-content: flex-start; 
+  justify-content: space-between; // равномерно по ширине
   align-items: center;
-  height: 100%;
-}
-
-.button-group button {
-  margin-right: auto;
+  width: 100%;
+  box-sizing: border-box;
+  padding-left: 0;
+  padding-right: 0; 
 }

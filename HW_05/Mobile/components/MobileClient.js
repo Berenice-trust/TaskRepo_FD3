@@ -180,6 +180,9 @@ class MobileClient extends React.PureComponent {
 
 MobileClient.propTypes = {
   client: PropTypes.object.isRequired,
+  isNew: PropTypes.bool,
+  onSave: PropTypes.func,
+  onCancel: PropTypes.func,
 };
 
 export default MobileClient;
