@@ -6,13 +6,12 @@ import logo from "./components/logo.png"; // картинка логотипа
 
 import products from "./products.json"; // импортируем список товаров из JSON-файла
 
-// рендер реакт 18+
 const root = ReactDOM.createRoot(document.getElementById("container"));
 root.render(
   <Shop
     name="iShop"
     address="г. Минск, ул. Вкусная, 1"
-    logo={logo} // логотип
-    products={products} // список товаров
+    logo={logo} // логотип components/logo.png
+    products={products} // список товаров products.json
   />,
 );

@@ -1,8 +1,7 @@
 import React from "react"; //  по идее эта строчка и не нужна
 import PropTypes from "prop-types";
 
-class Product extends React.Component{
-
+class Product extends React.Component {
   handleSelectProduct = () => {
     // деструктуризация props
     const { id, name, cbSelectProduct } = this.props;
@@ -16,16 +15,8 @@ class Product extends React.Component{
     cbDeleteProduct(id, name); // вызывается при клике на строку
   };
 
-
   render() {
-    const {
-      name,
-      price,
-      photoUrl,
-      count,
-      id,
-      selectedProductId,
-    } = this.props;
+    const { name, price, photoUrl, count, id, selectedProductId } = this.props;
 
     return (
       <tr
@@ -35,23 +26,38 @@ class Product extends React.Component{
         <td>{name}</td>
         <td>{price} руб.</td>
         <td>
-          <img src={photoUrl} alt={name} />
+          {photoUrl ? (
+            <img src={photoUrl} alt={name} />
+          ) : (
+            <span className="no-photo">Нет фото</span>
+          )}
         </td>
         <td>{count}</td>
         <td>
-          <button
-            type="button"
-            onClick={this.handleDeleteProduct} // callback удаления товара
-          >
-            Удалить
-          </button>
+          <div className="action-buttons">
+            <button
+              className="edit-btn"
+              disabled={this.props.disabled}
+              onClick={(e) => {
+                e.stopPropagation();
+                this.props.cbEditProduct(this.props.id, this.props.name);
+              }}
+            >
+              Редактировать
+            </button>
+            <button
+              type="button"
+              disabled={this.props.disabled}
+              onClick={this.handleDeleteProduct} // callback удаления товара
+            >
+              Удалить
+            </button>
+          </div>
         </td>
       </tr>
     );
   }
-
-
-};
+}
 
 Product.propTypes = {
   id: PropTypes.number.isRequired,
@@ -62,6 +68,8 @@ Product.propTypes = {
   selectedProductId: PropTypes.number, // может быть null
   cbSelectProduct: PropTypes.func.isRequired,
   cbDeleteProduct: PropTypes.func.isRequired, // функция удаления товара
+  cbEditProduct: PropTypes.func.isRequired, // функция редактирования товара
+  disabled: PropTypes.bool,
 };
 
 export default Product;

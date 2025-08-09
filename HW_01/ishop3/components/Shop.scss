@@ -57,6 +57,7 @@ $background-color: #f9f9f9;
       }
     }
   }
+  
 }
 
 .products-table {
@@ -83,6 +84,12 @@ $background-color: #f9f9f9;
     vertical-align: middle;
     font-size: 1em;
     color: #444;
+
+        .action-buttons {
+      display: flex;
+      gap: 12px; // расстояние между кнопками
+      justify-content: flex-start;
+    }
   }
 
   img {
@@ -118,6 +125,8 @@ $background-color: #f9f9f9;
     cursor: pointer;
     box-shadow: 0 2px 6px rgba(0,0,0,0.07);
     transition: background 0.2s, transform 0.1s;
+    flex: 1 1 0;
+    min-width: 0;
 
     &:hover, &:focus {
       background: #ffa726; // чуть насыщеннее при наведении
@@ -129,4 +138,130 @@ $background-color: #f9f9f9;
       transform: scale(0.98);
     }
   }
+
+  
+}
+
+button.edit-btn,
+button.add-btn {
+  border: none;
+  border-radius: 6px;
+  padding: 8px 18px;
+  font-size: 1em;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.07);
+  transition: background 0.2s, transform 0.1s;
+  flex: 1 1 0;
+  min-width: 0;
+  background: #4caf50;
+  color: #fff;
+}
+
+button.add-btn {
+   margin-top: 12px; // или сколько нужно
+  // display: block;
+}
+
+button.edit-btn:hover,
+button.add-btn:hover,
+button.edit-btn:focus,
+button.add-btn:focus {
+  background: #388e3c;
+  transform: translateY(-2px) scale(1.04);
+  outline: none;
+}
+
+button.edit-btn:active,
+button.add-btn:active {
+  background: #2e7031;
+  transform: scale(0.98);
+}
+
+button:disabled,
+button.edit-btn:disabled,
+button.add-btn:disabled {
+  background: #bdbdbd !important; // светло-серый
+  color: #eee !important;
+  cursor: not-allowed;
+  box-shadow: none;
+  opacity: 0.7;
+  transform: none;
+}
+
+button.cancel-btn {
+  background: #e07a3f;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 8px 18px;
+  font-size: 1em;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.07);
+  transition: background 0.2s, transform 0.1s;
+  margin-left: 16px; // расстояние между кнопками
+}
+
+button.cancel-btn:hover,
+button.cancel-btn:focus {
+  background: #ffa726;
+  transform: translateY(-2px) scale(1.04);
+  outline: none;
+}
+
+button.cancel-btn:active {
+  background: #fb8c00;
+  transform: scale(0.98);
+}
+
+.edit-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  margin-top: 18px;
+}
+
+.edit-form .form-group {
+  display: flex;
+  flex-direction: row; 
+  align-items: center;
+  margin-bottom: 18px;
+}
+
+.edit-form label {
+  min-width: 120px; 
+  margin-right: 18px; 
+  font-weight: 500;
+  margin-bottom: 0;
+}
+
+
+.edit-form input {
+  width: 280px;
+  padding: 10px 14px;
+  font-size: 1rem;
+  border: 1px solid #bdbdbd;
+  border-radius: 6px;
+  background: #fff;
+  transition: border 0.2s;
+  margin-bottom: 0;
+}
+
+.edit-form input:focus {
+  border-color: #4caf50;
+  outline: none;
+}
+
+.field-error {
+  color: #d32f2f;
+  font-size: 0.95em;
+  margin-left: 12px;
+  white-space: nowrap;
+}
+
+.no-photo {
+  color: #aaa;
+  font-size: 0.95em;
+  font-style: italic;
 }
