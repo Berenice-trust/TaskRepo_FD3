@@ -52,19 +52,14 @@ module.exports = {
 
         new HtmlWebpackPlugin({
             template: './index.html', // путь к твоему исходному index.html
-            inject: true, // false - отключает автоматическую вставку скриптов
-            // если прописать вручную в index.html, то можно отключить
         }),
     ],
     // по умолчанию ищет public/index.html
     // но у нас в корне лежит
     devServer: {
         static: {
-             directory: path.resolve(__dirname, 'dist'), // указываем корень проекта, где лежит index.html
+            directory: __dirname, // указываем корень проекта, где лежит index.html
         },
         port: 8080,
-        hot: true,
-        liveReload: false,
-        historyApiFallback: true,
     }
 }
