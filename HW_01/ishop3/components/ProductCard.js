@@ -14,7 +14,8 @@ class ProductCard extends React.Component {
       formErrors,
     } = this.props;
 
-    if (!product) return null;
+    if (!product) return null; // если нет товара, ничего не показываем
+    // форма при редактировании
     if ((isEditing || isAdding) && editingProduct) {
       return (
         <form className="product-card edit-form">
@@ -84,6 +85,7 @@ class ProductCard extends React.Component {
       );
     }
 
+    // форма при просмотре
     return (
       <div className="product-card">
         <h4>Карточка товара</h4>

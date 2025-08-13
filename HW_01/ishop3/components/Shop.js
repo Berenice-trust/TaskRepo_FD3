@@ -61,7 +61,7 @@ class Shop extends React.Component {
   handleEditChange = (field, value) => {
     const errors = { ...this.state.formErrors }; // копируем ошибки из стейта
 
-    // Валидация
+    // Валидация, функция из validateProduct.js
     const error = validateField(field, value); // если значение некорректно вернет текст ошибки
     if (error) {
       errors[field] = error;
@@ -70,13 +70,14 @@ class Shop extends React.Component {
     }
 
     this.setState((state) => ({
+      // копируем все поля товара и заменяем поле field
       editingProduct: { ...state.editingProduct, [field]: value },
       isFormDirty: true,
       formErrors: errors,
     }));
   };
 
-  // охраняет изменения  в форме редактирования
+  // охраняет изменения  в форме редактирования, нажатие Сохранить
   handleEditSave = () => {
     // Валидация
     const errors = validateProduct(this.state.editingProduct);
@@ -100,6 +101,7 @@ class Shop extends React.Component {
     });
   };
 
+  // отмена редактирования, нажатие Отмена
   handleEditCancel = () => {
     this.setState({
       isEditing: false,
@@ -108,6 +110,7 @@ class Shop extends React.Component {
     });
   };
 
+  // добавление нового товара
   handleAddProduct = () => {
     this.setState({
       isAdding: true,
@@ -119,6 +122,7 @@ class Shop extends React.Component {
     });
   };
 
+  // сохранение нового товара, нажатие Сохранить
   handleAddSave = () => {
     const { editingProduct, products } = this.state;
 
@@ -158,6 +162,8 @@ class Shop extends React.Component {
     const selectedProduct = this.state.products.find(
       (p) => p.id === this.state.selectedProductId,
     );
+
+    // нужно ли блокировать кнопки
     const disableActions =
       this.state.isEditing || this.state.isAdding || this.state.isFormDirty;
 
